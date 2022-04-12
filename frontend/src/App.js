@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
-import Home from './pages/Home';
-import Explore from "./Components/Explore";
-import Create from "./Components/Create";
-import Navbar from "./Components/Navbar";
+import Home from './components/Home';
+import Explore from "./components/Explore";
+import Create from "./components/Create";
+import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -13,7 +13,6 @@ function App() {
 		<BrowserRouter>
 			<div className="App">
         <Navbar props={(account, setAccount)} />
-				<Navbar />
 				<Routes>
 					<Route exact path="/" element={<Home />}>
 					</Route>
