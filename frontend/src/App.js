@@ -133,8 +133,6 @@ function App() {
     setIsClickedAll(true);
   }
 
-
-
   return (
     <BrowserRouter>
       <div className="App">
@@ -143,46 +141,42 @@ function App() {
         {/*          onClick={() => connectWallet()}>*/}
         {/*    connect to MetaMask*/}
         {/*  </button>*/}
-
         {/*  <div className='userInfo'>주소 : {account}</div>*/}
-
         {/*</div>*/}
-        <div className='getMyErc721'>
-          ERC 721 Contract Address(CA):
-          <input
-            type="text"
-            defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
-            onChange={(e) => {
-              setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
-            }}
-          ></input>
-        </div>
+        {/*<div className='getMyErc721'>*/}
+        {/*  ERC 721 Contract Address(CA):*/}
+        {/*  <input*/}
+        {/*    type="text"*/}
+        {/*    defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"*/}
+        {/*    onChange={(e) => {*/}
+        {/*      setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신*/}
+        {/*    }}*/}
+        {/*  ></input>*/}
+        {/*</div>*/}
+        {/*<div className='showMyErc721'>*/}
+        {/*  <button onClick={() => {showMyErc721Token(account)}}>*/}
+        {/*    show my erc721 list*/}
+        {/*  </button>*/}
+        {/*  <br></br>*/}
+        {/*  {isClickedMy?*/}
+        {/*    <div>*/}
+        {/*      <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>*/}
+        {/*    </div>*/}
+        {/*    :*/}
+        {/*    ''*/}
+        {/*  }*/}
+        {/*</div>*/}
+        {/*<div className="showAllErc721">*/}
+        {/*  <button onClick={showAllErc721Token}>show All erc721 list</button>*/}
 
-        <div className='showMyErc721'>
-          <button onClick={() => {showMyErc721Token(account)}}>
-            show my erc721 list
-          </button>
-          <br></br>
-          {isClickedMy?
-            <div>
-              <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>
-            </div>
-            :
-            ''
-          }
-        </div>
-
-        <div className="showAllErc721">
-          <button onClick={showAllErc721Token}>show All erc721 list</button>
-
-          {isClickedAll?
-            <div>
-              <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>
-            </div>
-            :
-            ''
-          }
-        </div>
+        {/*  {isClickedAll?*/}
+        {/*    <div>*/}
+        {/*      <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>*/}
+        {/*    </div>*/}
+        {/*    :*/}
+        {/*    ''*/}
+        {/*  }*/}
+        {/*</div>*/}
         <Navbar props={(account, setAccount)} />
         <Routes>
           <Route exact path="/" element={<Home />}>
@@ -202,7 +196,6 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
-
   );
 }
 
