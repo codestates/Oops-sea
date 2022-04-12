@@ -1,0 +1,20 @@
+.navbar {
+	background-color: #c9c9c9c9;
+	height: 80px;
+	display: flex;
+	justify-items: center;
+	align-items: center;
+}
+
+.link {
+	float: right;
+	display: flex;
+	list-style: none;
+	font-size: 26px;
+	font-weight: bold;
+	padding-right: 100px;
+}
+
+.link li {
+	margin-left: 30px;
+}
