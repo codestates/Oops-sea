@@ -1,10 +1,10 @@
 import './App.css';
-import React, { Component, useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react"; 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Web3 from 'web3';
 import erc721Abi from "./contract/erc721Abi"
-import TokenList from "./Component/TokenList";
+import TokenList from "./components/TokenList";
 
 
 // err 1
@@ -25,12 +25,9 @@ import TokenList from "./Component/TokenList";
 
 function App() {
   const [web3, setWeb3] = useState();
-  const [caver, setCaver] = useState();
   const [account, setAccount] = useState('');
   const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
   const [erc721list, setErc721list] = useState([]);
-  const [isClickedAll, setIsClickedAll] = useState(false);
-  const [isClickedMy, setIsClickedMy] = useState(false);
   let accounts;
 
   useEffect(() => {
@@ -58,96 +55,52 @@ function App() {
   };
 
 
-  // 2. ERC721 Contract Address(CA) 받기
-  const getErc721Contract = async (contractAddr) => {
-    const erc721Contract = await new web3.eth.Contract(
+  // 2. using web3.js to create contract obj, call contract function and save contract's tokens
+
+  
+  const addNewErc721Token = async () => {
+    const tokenContract = await new web3.eth.Contract( // create contract obj using abi, address
       erc721Abi,
-      contractAddr
-  );
-  erc721Contract.options.address = contractAddr;
- 
-  const name = await erc721Contract.methods.name().call();
-  const symbol = await erc721Contract.methods.symbol().call();
-  const totalSupply = await erc721Contract.methods.totalSupply().call();
+      newErc721addr
+    );
 
-  console.log("NFT 현황 - name, symbol, totalSupply : ", name, symbol, totalSupply);
+    const name = await tokenContract.methods.name().call();
+    const symbol = await tokenContract.methods.symbol().call();
+    const totalSupply = await tokenContract.methods.totalSupply().call();
 
-    return erc721Contract;
-
-  }
-
-  // 3. Erc721 list 보여주기(NFT)
-  const showMyErc721Token = async (myAccount) => {
-    console.log('clicked showMyErcToken button -> ', myAccount)
+	  let arr = [];
+    for (let i = 1; i <= totalSupply; i++) { // 2-1. 사용자가 가진 토큰의 총 개수만큼 반복
+        arr.push(i);
+    }
     
-    const {erc721Contract, tokenName, tokenSymbol, totalSupply} = await getErc721Contract(newErc721addr); // 컨트랙트 불러오기
-
-    const erc721MyList = [];
-    for (let tokenId=1; tokenId<=totalSupply; tokenId++) {
-      let tokenOwner = await erc721Contract.methods
-        .ownerOf(tokenId)
-        .call();
-      
-        console.log(tokenOwner);
-
-        if (String(tokenOwner).toLowerCase() === myAccount) {
-          let tokenURI = await erc721Contract.methods
-            .tokenURI(tokenId)
+    for (let tokenId of arr) { // 2-2. 모든 토큰들을 꺼내면서 토큰 오너 주소를 받아옴(tokenContract.methods.ownerOf(tokenId).call())
+        let tokenOwner = await tokenContract.methods
+            .ownerOf(tokenId)
             .call();
-
-          console.log(tokenOwner, tokenURI);
-
-         erc721MyList.push({ tokenName, tokenSymbol, tokenId, tokenURI, tokenOwner })
-
+        if (String(tokenOwner).toLowerCase() === account) { // 2-3. tokenOwner가 dApp으로 연결한 account 주소와 같은지 검증
+            let tokenURI = await tokenContract.methods
+                .tokenURI(tokenId)  
+                .call();  // 2-4. 같다면 Contract.methods.tokenURI().call()로 해당 토큰의 URI 를 가져옴
+            setErc721list((prevState) => {
+                return [...prevState, { name, symbol, tokenId, tokenURI }];
+            });// 2-5. setErc721list에 세팅하여 토큰 정보 저장 
         }
     }
-    setErc721list(erc721MyList);
-    setIsClickedAll(false);
-    setIsClickedMy(true);
   }
-
-  // 4. 모든 Erc721 list 보여주기
-  const showAllErc721Token = async () => {
-    console.log('clicked showAllErcToken button ')
-
-    const {erc721Contract, tokenName, tokenSymbol, totalSupply} = await getErc721Contract(newErc721addr); // 컨트랙트 불러오기
-
-    const erc721AllList = [];
-
-    for (let tokenId=1; tokenId<=totalSupply; tokenId++) {
-      let tokenOwner = await erc721Contract.methods
-        .ownerOf(tokenId)
-        .call();
-      
-      let tokenURI = await erc721Contract.methods
-        .tokenURI(tokenId)
-        .call();
-
-      erc721AllList.push({tokenName, tokenSymbol, tokenId, tokenURI, tokenOwner})
-
-    }
-    setErc721list(erc721AllList);
-    setIsClickedMy(false);
-    setIsClickedAll(true);
-  }
-
 
   return (
 
-    <BrowserRouter>
       <div className="App">
         <div className='wallet-container'>
           <button className='connect-wallet-Btn'
                   onClick={() => connectWallet()}>
             connect to MetaMask
           </button>
-          
-          <div className='userInfo'>주소 : {account}</div>
-          
+          <div className='userInfo'>주소 : {account}</div>  
         </div>
 
 
-        <div className='getMyErc721'>
+        <div className="newErc721">
           ERC 721 Contract Address(CA): 
           <input
               type="text"
@@ -155,36 +108,13 @@ function App() {
               onChange={(e) => {
                 setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
               }}
-          ></input>          
-        </div>
+          ></input> 
+          <button onClick={addNewErc721Token}>add new erc721</button>     
+        </div>    
 
-        <div className='showMyErc721'>
-          <button onClick={() => {showMyErc721Token(account)}}>
-            show my erc721 list
-          </button>
-            <br></br>
-            {isClickedMy? 
-              <div>
-                <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>
-              </div>
-              :
-              ''
-            }
-        </div>
+        <TokenList web3={web3} account={account} erc721list={erc721list} />
 
-        <div className="showAllErc721">
-          <button onClick={showAllErc721Token}>show All erc721 list</button>
-
-          {isClickedAll? 
-            <div>
-              <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>
-            </div>
-            :
-            ''
-          }
-        </div>
       </div>
-    </BrowserRouter>
    
   );
 }
