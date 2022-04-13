@@ -89,117 +89,32 @@ function App() {
       }
     }
   }
-
-  // 3. Erc721 list 보여주기(NFT)
-  const showMyErc721Token = async (myAccount) => {
-    console.log('clicked showMyErcToken button -> ', myAccount)
-    
-    const {erc721Contract, tokenName, tokenSymbol, totalSupply} = await getErc721Contract(newErc721addr); // 컨트랙트 불러오기
-
-    const erc721MyList = [];
-    for (let tokenId=1; tokenId<=totalSupply; tokenId++) {
-      let tokenOwner = await erc721Contract.methods
-        .ownerOf(tokenId)
-        .call();
-      
-        console.log(tokenOwner);
-
-        if (String(tokenOwner).toLowerCase() === myAccount) {
-          let tokenURI = await erc721Contract.methods
-            .tokenURI(tokenId)
-            .call();
-
-          console.log(tokenOwner, tokenURI);
-
-         erc721MyList.push({ tokenName, tokenSymbol, tokenId, tokenURI, tokenOwner })
-
-        }
-    }
-    setErc721list(erc721MyList);
-    setIsClickedAll(false);
-    setIsClickedMy(true);
-  }
-
-  // 4. 모든 Erc721 list 보여주기
-  const showAllErc721Token = async () => {
-    console.log('clicked showAllErcToken button ')
-
-    const {erc721Contract, tokenName, tokenSymbol, totalSupply} = await getErc721Contract(newErc721addr); // 컨트랙트 불러오기
-
-    const erc721AllList = [];
-
-    for (let tokenId=1; tokenId<=totalSupply; tokenId++) {
-      let tokenOwner = await erc721Contract.methods
-        .ownerOf(tokenId)
-        .call();
-      
-      let tokenURI = await erc721Contract.methods
-        .tokenURI(tokenId)
-        .call();
-
-      erc721AllList.push({tokenName, tokenSymbol, tokenId, tokenURI, tokenOwner})
-
-    }
-    setErc721list(erc721AllList);
-    setIsClickedMy(false);
-    setIsClickedAll(true);
-  }
-
-
   return (
-
-    <BrowserRouter>
-      <div className="App">
-        <div className='wallet-container'>
-          <button className='connect-wallet-Btn'
-                  onClick={() => connectWallet()}>
-            connect to MetaMask
-          </button>
-          
-          <div className='userInfo'>주소 : {account}</div>
-          
-        </div>
-
-
-        <div className='getMyErc721'>
-          ERC 721 Contract Address(CA): 
-          <input
-              type="text"
-              defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
-              onChange={(e) => {
-                setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
-              }}
-          ></input>          
-        </div>
-
-        <div className='showMyErc721'>
-          <button onClick={() => {showMyErc721Token(account)}}>
-            show my erc721 list
-          </button>
-            <br></br>
-            {isClickedMy? 
-              <div>
-                <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>
-              </div>
-              :
-              ''
-            }
-        </div>
-
-        <div className="showAllErc721">
-          <button onClick={showAllErc721Token}>show All erc721 list</button>
-
-          {isClickedAll? 
-            <div>
-              <TokenList web3={web3} account={account} erc721list={erc721list} erc721addr={newErc721addr}/>
-            </div>
-            :
-            ''
-          }
-        </div>
+    <div className="App">
+      <div className='wallet-container'>
+        <button className='connect-wallet-Btn'
+                onClick={() => connectWallet()}>
+          connect to MetaMask
+        </button>
+        <div className='userInfo'>주소 : {account}</div>
       </div>
-    </BrowserRouter>
-   
+
+
+      <div className="newErc721">
+        ERC 721 Contract Address(CA):
+        <input
+          type="text"
+          defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
+          onChange={(e) => {
+            setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
+          }}
+        ></input>
+        <button onClick={addNewErc721Token}>add new erc721</button>
+      </div>
+
+      <TokenList web3={web3} account={account} erc721list={erc721list} />
+
+    </div>
   );
 }
 
