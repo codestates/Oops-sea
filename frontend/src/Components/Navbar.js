@@ -50,6 +50,12 @@ const Navbar = ({ account, setAccount }) => {
         <Link to="/create" style={{ textDecoration: "none", color: "inherit" }}>
           <li>Create</li>
         </Link>
+        <Link
+          to="/account"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <li>Account</li>
+        </Link>
         <li>
           {/* <button
             type="button"

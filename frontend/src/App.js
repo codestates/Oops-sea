@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "./Components/Home";
 import Explore from "./Components/Explore";
 import Create from "./Components/Create";
+import Account from "./Components/Account";
 import Navbar from "./Components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -29,6 +30,12 @@ const App = () => {
         <Route
           path="/create"
           element={<Create props={(account, setAccount)} />}
+        />
+      </Routes>
+      <Routes>
+        <Route
+          path="/account"
+          element={<Account props={(account, setAccount)} />}
         />
       </Routes>
     </BrowserRouter>
