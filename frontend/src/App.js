@@ -6,6 +6,7 @@ import Explore from "./components/Explore";
 import Create from "./components/Create";
 import Account from "./components/Account";
 import Navbar from "./components/Navbar";
+import Detail from "./components/Detail";
 import Web3 from "web3";
 
 function App() {
@@ -15,12 +16,17 @@ function App() {
   const [mainweb3, setMainweb3] = useState();
   const [clicked, setClicked] = useState();
   const [isLogin, setIsLogin] = useState(false);
+  const [nftList, setNftList] = useState("");
   // const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
   // const [erc721list, setErc721list] = useState([]);
 
   useEffect(() => {
     setMainaccount(mainaccount);
   }, [mainaccount]);
+
+  useEffect(() => {
+    console.log("nftList", nftList);
+  }, [nftList]);
 
   useEffect(() => {
     if (mainaccount === undefined || mainaccount === null) {
@@ -51,9 +57,14 @@ function App() {
           <Route
             path="/explore"
             element={
-              <Explore account={mainaccount} handleClicked={handleClicked} />
+              <Explore
+                account={mainaccount}
+                handleClicked={handleClicked}
+                setNftList={setNftList}
+              />
             }
           />
+          <Route path="/explore/detail/:id" element={<Detail />} />
           <Route path="/create" element={<Create account={mainaccount} />} />
           <Route
             path="/account"
