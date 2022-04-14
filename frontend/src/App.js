@@ -1,20 +1,12 @@
 import "./App.css";
-<<<<<<< HEAD
-import Home from "./Components/Home";
-import Explore from "./Components/Explore";
-import Create from "./Components/Create";
-import Account from "./Components/Account";
-import Navbar from "./Components/Navbar";
-import Footer from "./Components/Footer";
-=======
 import React, { useEffect, useState } from "react";
->>>>>>> d8fe4fc09776b2d53adffd6b11e98293eec8630a
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Explore from "./components/Explore";
 import Create from "./components/Create";
 import Account from "./components/Account";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Web3 from "web3";
 
 function App() {
@@ -69,6 +61,7 @@ function App() {
 						element={<Account web3={mainweb3} account={mainaccount} />}
 					/>
 				</Routes>
+				<Footer />
 			</div>
 		</BrowserRouter>
 	);
