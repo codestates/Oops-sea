@@ -25,10 +25,6 @@ function App() {
   }, [mainaccount]);
 
   useEffect(() => {
-    console.log("nftList", nftList);
-  }, [nftList]);
-
-  useEffect(() => {
     if (mainaccount === undefined || mainaccount === null) {
       setIsLogin(false);
     } else {
@@ -57,14 +53,13 @@ function App() {
           <Route
             path="/explore"
             element={
-              <Explore
-                account={mainaccount}
-                handleClicked={handleClicked}
-                setNftList={setNftList}
-              />
+              <Explore account={mainaccount} handleClicked={handleClicked} />
             }
           />
-          <Route path="/explore/detail/:id" element={<Detail />} />
+          <Route
+            path="/explore/detail/"
+            element={<Detail clicked={clicked} />}
+          />
           <Route path="/create" element={<Create account={mainaccount} />} />
           <Route
             path="/account"
