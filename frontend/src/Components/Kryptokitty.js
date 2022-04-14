@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../components/Kryptokitty.css";
+import ".//Kryptokitty.css";
 import { FiArrowDown, FiChevronDown } from "react-icons/fi";
 import {
   MdSearch,

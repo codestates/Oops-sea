@@ -1,27 +1,45 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-//import Footer from './components/Footer';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import React, { useState } from "react";
+import "./App.css";
+import Home from "./Components/Home";
+import Explore from "./Components/Explore";
+import Create from "./Components/Create";
+import Account from "./Components/Account";
+import Navbar from "./Components/Navbar";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-
-function App() {
-
+const App = () => {
+	const [account, setAccount] = useState("");
 
 	return (
 		<BrowserRouter>
-			<div className="App">
-				<Navbar />
-					<Routes>
-						<Route exact path="/" element={<Home />}>
-						</Route>
-					</Routes>
-			</div>
+			<Navbar/>
+			<Routes>
+				<Route
+					exact
+					path="/"
+					element={<Home/>}
+				/>
+			</Routes>
+			<Routes>
+				<Route
+					path="/explore"
+					element={<Explore/>}
+				/>
+			</Routes>
+			<Routes>
+				<Route
+					path="/create"
+					element={<Create />}
+				/>
+			</Routes>
+			<Routes>
+				<Route
+					path="/account"
+					element={<Account/>}
+				/>
+			</Routes>
 		</BrowserRouter>
-		
 	);
-}
+};
 
 export default App;
