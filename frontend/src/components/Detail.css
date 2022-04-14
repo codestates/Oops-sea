@@ -1,0 +1,41 @@
+/* * {
+    border: 1px solid red;
+  }
+   */
+  .detail {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+  }
+  
+  /* .item--summary {
+     flex-direction: column; 
+  } */
+  
+  .media-container .item-description {
+    width: 25vw;
+  }
+  
+  .media {
+    width: 100%;
+    height: 100%;
+  }
+
+  .card.mb-3.addOption{
+    flex-direction: row;
+    max-width: 800px;
+    margin :50px auto;
+}
+
+.eth-logo{
+    width: 16px;
+    height: 16px;
+}
+
+.card-img-top.addOption{
+    min-width: 200px;
+}
+
+.btn.btn-primary{
+    margin-top:6px;
+}

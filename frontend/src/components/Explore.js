@@ -85,22 +85,22 @@ const Explore = ({ handleClicked }) => {
   
   // setData(itemData);
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const options = { method: 'GET' };
+    const options = {method: 'GET', headers: {Accept: 'application/json'}};
 
-  //   const dataLoad = async () => {
-  //     const dataList = await fetch(
-  //       'https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20',
-  //       options
-  //     )
-  //       .then((response) => response.json())
-  //       .catch((err) => console.error(err));
-  //     setData(dataList.assets);
+    const dataLoad = async () => {
+      const dataList = await fetch(
+        'https://api.opensea.io/api/v1/assets?order_direction=desc&limit=20',
+        options
+      )
+        .then((response) => response.json())
+        .catch((err) => console.error(err));
+      setData(dataList.assets);
       
-  //   };
-  //   dataLoad();
-  // }, []);
+    };
+    dataLoad();
+  }, []);
 
     return (
         <div className="explore-nftList-container">

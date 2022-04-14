@@ -7,6 +7,7 @@ import Create from "./components/Create";
 import Account from "./components/Account";
 import Navbar from "./components/Navbar";
 import Web3 from 'web3';
+import Detail from './components/Detail';
 
 function App() {
   // const [web3, setWeb3] = useState();
@@ -54,13 +55,19 @@ function App() {
               element={<Explore account={mainaccount} handleClicked={handleClicked} />}
             />
             <Route
+              path="/explore/detail"
+              element={<Detail clicked={clicked} />}
+            />
+            <Route
               path="/create"
               element={<Create account={mainaccount} />}
             />
+            
             <Route
               path="/account"
               element={<Account web3={mainweb3} account={mainaccount}/>}
             />
+            
           </Routes>
 
         </div>

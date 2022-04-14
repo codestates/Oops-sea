@@ -3,16 +3,17 @@
 // 3. ERC721 컨트랙트의 transferFrom 함수를 사용해 토큰을 이동
 import erc721Abi from "../contract/erc721Abi";
 import { useState } from 'react';
+import './Erc721.css'
 
-function Erc721({ web3, account, erc721list }) {
+function Erc721({ web3, account, erc721list, newErc721addr }) {
 
     const [to, setTo] = useState("");
 
     // Erc721 전송 function
-    const sendToken = async (tokenAddr, tokenId) => { 
+    const sendToken = async (newErc721addr, tokenId) => { 
         const tokenContract = await new web3.eth.Contract( // abi, address 로 토큰객체 생성
             erc721Abi,
-            tokenAddr,
+            newErc721addr,
             {
                 from: account,
             }
@@ -33,41 +34,40 @@ function Erc721({ web3, account, erc721list }) {
     }
 
     return (
-        <div className="erc721list">
+        <div className="card-group erc721list addOption">
             {erc721list.map((token) => {
                 return (
 
                     // 보유 Erc721 토큰 list
-                    <div className="erc721token">
-                    Name: <span className="name">{token.name}</span>(
-                    <span className="symbol">{token.symbol}</span>)
-                    <div className="nft">id: {token.tokenId}</div>
-                    <img src={token.tokenURI} width={300} />
-                    
+                    <div className="card erc721token addOption" key={token.tokenId}>
+                    <div className="flexbox">
+                    <img className="card-img-top addOption" src={token.tokenURI} width={300} />
+                    <div className="flexbox2">
+                    <div className="name"><strong>Name : </strong>{token.name}</div>
+                    <div className="symbol"><strong>Symbol : </strong>{token.symbol}</div>
+                    <div className="nft"><strong>ID : </strong>{token.tokenId}</div>
+      
                     {/* 토큰 전송 form */}
                     <div className="tokenTransfer">
-                        To:{""}
-                        <input // 토큰을 받을 사용자의 주소 입력 및 갱신(setTo(e))
-                            type="text"
-                            value={to}
-                            onChange={(e) => {
-                                setTo(e.target.value);
-                            }} 
-                        ></input>
-                        <button // 토큰 송신 버튼
-                            className="sendErc20Btn"
-                            onClick={sendToken.bind(
-                                this,
-                                token.address,
-                                token.tokenId
-                            )}
-                        >
-                            send Token
-                        </button>
+                    <input
+                    className="card-title addOption title"
+                    type="text"
+                    value={to}
+                    placeholder="전송받을 주소 입력"
+                    onChange={(e) => {
+                        setTo(e.target.value);
+                    }}
+                    />
+                    <button className="card-text sendErc721Btn btn btn-secondary" 
+                            onClick={sendToken.bind(this, newErc721addr, token.tokenId)}>
+                    전송
+                    </button>
                     </div>
-                </div>
-                );
-            })}
+              </div>
+              </div>
+            </div>
+            );
+        })}
         </div>
     );
 }
