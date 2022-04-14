@@ -64,14 +64,25 @@ const Create = ({ account }) => {
       const ADDRESS = '0x8dc27935bA6725025D4b96F49445392E7AE45c5B';
 
       const web3 = new Web3(new Web3.providers.HttpProvider(`https://ropsten.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`));
-      const nftContract = new web3.eth.Contract(erc721Abi, ADDRESS);
-      console.log('nftContract', nftContract);
-      // await nftContract.methods.mintNFT(account, uri).call();
+      window.contract = await new new web3.eth.Contract(erc721Abi, ADDRESS);
+//       const nftContract = new web3.eth.Contract(erc721Abi, ADDRESS);
+//       console.log('nftContract', nftContract);
+     // await nftContract.methods.mintNFT(account, uri).call();
+      const txParameters = {
+        to: deploy_address, // 배포한 주소
+        from: window.ethereum.selectedAddress,
+        'data': window.contract.methods.mintNFT(window.ethereum.selectedAddress, uri).encodeABI()
+      };
+      const txHash = await window.ethereum
+                            .request({
+                              method: 'eth_sendTransaction',
+                              params: [txParameters],
+                            });
+      console.log('txHash', txHash);
       console.log('minted');
-      console.log(nftContract.methods);
 
     } catch (error) {
-      console.log('Error uploading file: ', error)
+      console.log('Error ', error)
     }
   }
   return (
