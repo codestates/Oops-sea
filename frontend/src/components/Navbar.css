@@ -1,20 +1,21 @@
 .navbar {
-	background-color: #c9c9c9c9;
+	background-color: #fff;
 	height: 80px;
 	display: flex;
 	justify-items: center;
 	align-items: center;
-}
-
-.link {
+	box-shadow: 0px 0.5px 20px rgb(188, 188, 188);
+  }
+  
+  .link {
 	float: right;
 	display: flex;
 	list-style: none;
 	font-size: 26px;
 	font-weight: bold;
 	padding-right: 100px;
-}
-
-.link li {
-	margin-left: 30px;
-}
+  }
+  
+  .link li {
+	margin-left: 50px;
+  }

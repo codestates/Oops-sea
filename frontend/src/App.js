@@ -1,6 +1,8 @@
+import './App.css';
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
+import Home from './components/Home';
+//import Footer from './components/Footer';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 
