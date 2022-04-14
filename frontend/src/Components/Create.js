@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Create.css";
 // import { MintNFT } from "../contracts/MintNFT";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import * as IPFS from "ipfs-core";
 
 const Create = ({ account }) => {
   const [file, setFile] = useState(null);
@@ -11,6 +12,10 @@ const Create = ({ account }) => {
   const ethereumTypeList = ["ERC-721"];
 
   const handleClick = async (e) => {
+    const ipfs = await IPFS.create();
+    const { cid } = await ipfs.add("Hello world");
+    console.info(cid);
+
     try {
       if (!account) return;
       //   const response = await MintNFT.methods
@@ -23,16 +28,6 @@ const Create = ({ account }) => {
 
   return (
     <div className="Blockreact">
-      {/* <nav className="Navbar--main">
-        Nav가 들어갈 예정입니다.
-        <div className="Navbar--left">오픈씨 마크 + OpenSea</div>
-        <div className="Blockreact">Search 창</div>
-        <ul className="Navbarreact__ContainerList">
-          <li className="NavItemreact--profile">프로필</li>
-          <li className="NavItemreact--wallet">지갑</li>
-          <li className="NavItemreact--LiContainer">햄버거</li>
-        </ul>
-      </nav> */}
       <main className="FlexColumnreact">
         <header>
           <h1>Create New Item</h1>
@@ -104,7 +99,14 @@ const Create = ({ account }) => {
           <div>
             <span>
               <div>
-                <button type="button">생성</button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    handleClick();
+                  }}
+                >
+                  생성
+                </button>
               </div>
             </span>
           </div>
