@@ -5,7 +5,9 @@ import Explore from "./Components/Explore";
 import Create from "./Components/Create";
 import Account from "./Components/Account";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 const App = () => {
 	const [account, setAccount] = useState("");
@@ -38,6 +40,7 @@ const App = () => {
 					element={<Account/>}
 				/>
 			</Routes>
+			<Footer />
 		</BrowserRouter>
 	);
 };
