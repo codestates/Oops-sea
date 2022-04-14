@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import Search from "./Search";
 import { Link } from "react-router-dom";
@@ -7,7 +7,9 @@ import IconButton from "@mui/material/IconButton";
 import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-const Navbar = ({ account, setAccount }) => {
+const Navbar = () => {
+  const [account, setAccount] = useState("");
+
   const getAccount = async () => {
     try {
       if (window.ethereum) {
@@ -28,11 +30,11 @@ const Navbar = ({ account, setAccount }) => {
   }, []);
 
   useEffect(() => {
-    console.log(account);
+    console.log("effect :", account);
   }, [account]);
 
   return (
-    <div className="navbar FlexRowreact">
+    <div className="navbar Flexrowreact">
       <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
         <IconButton>
           <SailingIcon />
@@ -71,6 +73,7 @@ const Navbar = ({ account, setAccount }) => {
               getAccount();
               console.log(account);
             }}
+            value=""
           >
             <AccountBalanceWalletIcon />
           </ToggleButton>
