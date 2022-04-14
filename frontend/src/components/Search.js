@@ -1,27 +1,24 @@
-import React from 'react';
-import './Search.css';
+import "./Search.css";
+import SearchIcon from "@mui/icons-material/Search";
+import ClearIcon from "@mui/icons-material/Clear";
 
 const Search = () => {
+  const handleClick = () => {
+    document.getElementById("what-user-search").value = "";
+  };
 
-	return (
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					<div id="custom-search-input">
-						<div class="input-group col-md-12">
-							<input type="text" class="form-control input-lg" placeholder="Search..." />
-							<span class="input-group-btn">
-								<button class="btn btn-info btn-lg" type="button">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-
-}
+  return (
+    <div className="Blockreact searchContainer">
+      <SearchIcon />
+      <input
+        type="text"
+        id="what-user-search"
+        className="form-control input-lg"
+        placeholder="NFT, 컬렉션, 계정을 검색하세요"
+      />
+      <ClearIcon />
+    </div>
+  );
+};
 
 export default Search;
