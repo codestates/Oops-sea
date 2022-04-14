@@ -1,5 +1,17 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+.Blockreact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.FlexColumnreact {
+    flex-direction: column;
+}
+
+.FlexRowreact {
+    flex-direction: row;
+}
+
+.navbar {
+    justify-content: space-between;
 }

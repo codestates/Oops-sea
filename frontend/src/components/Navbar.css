@@ -5,17 +5,17 @@
 	justify-items: center;
 	align-items: center;
 	box-shadow: 0px 0.5px 20px rgb(188, 188, 188);
-  }
-  
-  .link {
+}
+
+.link {
 	float: right;
 	display: flex;
 	list-style: none;
 	font-size: 26px;
 	font-weight: bold;
 	padding-right: 100px;
-  }
-  
-  .link li {
+}
+
+.link li {
 	margin-left: 50px;
-  }
+}
