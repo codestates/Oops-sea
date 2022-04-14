@@ -1,13 +1,16 @@
+import dotenv from 'dotenv';
 import { useEffect, useState } from "react";
 import "./Create.css";
 import { create } from 'ipfs-http-client';
 // import { MintNFT } from "../contracts/MintNFT";
+import Web3 from 'web3';
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import erc721Abi from '../contract/erc721Abi';
 
 const client = create('https://ipfs.infura.io:5001/api/v0')
-
-
 const Create = ({ account }) => {
+
+  dotenv.config();
   const [name, setName] = useState("");
   const [imageUrl, updateImageUrl] = useState(``)
   const [description, setDescription] = useState("");
@@ -56,13 +59,16 @@ const Create = ({ account }) => {
     try {
       const added = await client.add(JSON.stringify(tokenURI))
       const uri = `https://ipfs.infura.io/ipfs/${added.path}`
-      const ADDRESS = '0xEf5c30bDC911C1Cfe9e637cd647DC4098441806D';
       console.log(uri);
-      // const res = await axios.post('/api/nft',{
-      //   ADDRESS,
-      //   tokenURI,
-      // });
-      // console.log(res);
+      // const ADDRESS = '0xEf5c30bDC911C1Cfe9e637cd647DC4098441806D';
+      const ADDRESS = '0x8dc27935bA6725025D4b96F49445392E7AE45c5B';
+
+      const web3 = new Web3(new Web3.providers.HttpProvider(`https://ropsten.infura.io/v3/${process.env.REACT_APP_INFURA_ID}`));
+      const nftContract = new web3.eth.Contract(erc721Abi, ADDRESS);
+      console.log('nftContract', nftContract);
+      // await nftContract.methods.mintNFT(account, uri).call();
+      console.log('minted');
+      console.log(nftContract.methods);
 
     } catch (error) {
       console.log('Error uploading file: ', error)
