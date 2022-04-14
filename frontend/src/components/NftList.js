@@ -31,9 +31,9 @@ const NftList = ({ data, handleClick }) => {
                   handleOnClick(item);
                 }}
               >
-                <Link to={"/explore/detail"} className="btn btn-secondary">
-                  선택한 NFT 상세페이지
-                </Link>
+              <Link to={"/explore/detail"} className="btn btn-secondary">
+                선택한 NFT 상세페이지
+              </Link>
               </button>
             </p>
           </div>
