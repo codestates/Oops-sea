@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom'
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import ImageListItemBar from '@mui/material/ImageListItemBar';
+// import ImageList from '@mui/material/ImageList';
+// import ImageListItem from '@mui/material/ImageListItem';
+// import ImageListItemBar from '@mui/material/ImageListItemBar';
 // import ListSubheader from '@mui/material/ListSubheader';
-import IconButton from '@mui/material/IconButton';
-import InfoIcon from '@mui/icons-material/Info';
+// import IconButton from '@mui/material/IconButton';
+// import InfoIcon from '@mui/icons-material/Info';
 import './NftList.css';
 
 const NftList = ({ data, handleClick }) => {
@@ -31,9 +31,9 @@ const NftList = ({ data, handleClick }) => {
                   handleOnClick(item);
                 }}
               >
-                {/* <Link to={"/explore/detail"} className="btn btn-secondary">
+                <Link to={"/explore/detail"} className="btn btn-secondary">
                   선택한 NFT 상세페이지
-                </Link> */}
+                </Link>
               </button>
             </p>
           </div>

@@ -55,7 +55,7 @@ const Account = ({ web3, account }) => {
             }}
         ></input> 
         <button onClick={addNewErc721Token}>MyNFT Collections</button>     
-      </div>    
+      </div>
 
       <TokenList web3={web3} account={account} erc721list={erc721list} newErc721addr={newErc721addr} />
     </div>
