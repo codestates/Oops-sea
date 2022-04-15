@@ -1,20 +1,24 @@
-
-import erc721Abi from "../contract/erc721Abi"
-import Web3 from 'web3';
-
+import erc721AbiCreate from "../contract/erc721AbiCreate";
+// import erc721Abi from "../contract/erc721Abi"
 import TokenList from "./TokenList";
 import { useState, useEffect } from "react";
+import './Account.css';
 
 const Account = ({ web3, account }) => {
-
-  const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
+  
+  // const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
+  const [newErc721addr, setNewErc721Addr] = useState('0x2Fd99173daA98f87E4F36aA84C256011738f8C2b'); // my ERC721 CA
   const [erc721list, setErc721list] = useState([]);
 
 
   // using web3.js to create contract obj, call contract method and save contract's tokens using setState
   const addNewErc721Token = async () => {
+
+    if(account==='' || web3===undefined) return alert('지갑을 연결하세요.')
+
     const tokenContract = await new web3.eth.Contract( // create contract obj using abi, address
-      erc721Abi,
+      // erc721Abi,
+      erc721AbiCreate,
       newErc721addr
     );
     // alert('erc721');
@@ -49,7 +53,8 @@ const Account = ({ web3, account }) => {
         ERC 721 Contract Address(CA): 
         <input
             type="text"
-            defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
+            // defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
+            defaultValue="0x2Fd99173daA98f87E4F36aA84C256011738f8C2b"
             onChange={(e) => {
               setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
             }}
