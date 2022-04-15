@@ -69,7 +69,7 @@ function App() {
             />
             <Route
               path="/explore/detail"
-              element={<Detail clicked={clicked} />}
+              element={<Detail web3={mainweb3} clicked={clicked} />}
             />
             <Route
               path="/create"

@@ -20,9 +20,9 @@ const Explore = ({ handleClicked }) => {
         .then((response) => response.json())
         .catch((err) => console.error(err));
       setData(dataList.assets);
-      
     };
     dataLoad();
+    // console.log(data);
   }, []);
 
     return (
