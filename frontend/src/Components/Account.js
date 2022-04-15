@@ -37,6 +37,9 @@ const Account = ({ web3, account }) => {
       }
     }
   };
+
+  console.log(web3);
+
   return (
     <div>
       <div className="newErc721">
