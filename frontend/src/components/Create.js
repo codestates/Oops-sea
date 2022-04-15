@@ -1,40 +1,52 @@
-
-   
 import { useEffect, useState } from "react";
 import "./Create.css";
-// import { MintNFT } from "../contracts/MintNFT";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+import { create } from 'ipfs-http-client';
+import erc721AbiCreate from '../contract/erc721AbiCreate'
 
-const Create = ({ account }) => {
-  const [file, setFile] = useState(null);
-  const [name, setName] = useState("");
-  const [link, setLink] = useState("");
+const Create = ({ web3, account }) => {
+  const [fileUrl, setFileUrl] = useState(null);
+  const [nftName, setNftName] = useState("");
+  const [detailLink, setDetailLink] = useState("");
   const [description, setDescription] = useState("");
   const ethereumTypeList = ["ERC-721"];
+  // const contractAddr = "0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
+  const contractAddr = "0x2Fd99173daA98f87E4F36aA84C256011738f8C2b";
 
-  const handleClick = async (e) => {
-    try {
-      if (!account) return;
-      //   const response = await MintNFT.methods
-      //     .createNFT()
-      //     .send({ from: account });
-    } catch (error) {
-      console.error(error);
-    }
+  const mint = async () => {
+
+    if(account==='' || web3===undefined) return alert('지갑을 연결하세요.')
+    console.log(web3, account,contractAddr);
+
+    const client = create("https://ipfs.infura.io:5001/api/v0");
+    let cid = await client.add(fileUrl);
+    let token_uri = `https://ipfs.infura.io/ipfs/${cid.path}`;
+
+    let tokenContract = await new web3.eth.Contract(erc721AbiCreate, contractAddr, {
+      from: account,
+    });
+    // tokenContract.options.address = contractAddr;
+    console.log(tokenContract);
+
+    const newTokenId = await tokenContract.methods.mintNFT(account, token_uri).send({
+      from: account,
+    }).on("receipt",(receipt) => {
+      console.log(receipt);
+    });
+    
+    const name = await tokenContract.methods.name().call();
+    const symbol = await tokenContract.methods.symbol().call();
+    const totalSupply = await tokenContract.methods.totalSupply().call();
+
+    console.log(name,symbol,totalSupply)
+    alert(`새로운 NFT ${nftName}을 발급하였습니다! `)
+
+    
+
   };
 
   return (
     <div className="Blockreact">
-      {/* <nav className="Navbar--main">
-        Nav가 들어갈 예정입니다.
-        <div className="Navbar--left">오픈씨 마크 + OpenSea</div>
-        <div className="Blockreact">Search 창</div>
-        <ul className="Navbarreact__ContainerList">
-          <li className="NavItemreact--profile">프로필</li>
-          <li className="NavItemreact--wallet">지갑</li>
-          <li className="NavItemreact--LiContainer">햄버거</li>
-        </ul>
-      </nav> */}
       <main className="FlexColumnreact">
         <header>
           <h1>Create New Item</h1>
@@ -53,12 +65,23 @@ const Create = ({ account }) => {
               GLTF. 최대 크기: 100MB
             </span>
             <div className="mediaContainer">
-              <input type="file" className="mediaBox"></input>
-              <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
-              <i value="image" className="icon">
-                image
-              </i>
-              <div></div>
+              {fileUrl ? (
+                <img className="media" src={fileUrl}/>  
+              ) : (
+                <>
+                  <label className="input-file-icon" htmlFor="input-file">
+                    <div className="icon-case">
+                      <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
+                    </div>
+                  </label>
+                  <input
+                    type="file"
+                    id="input-file"
+                    className="imgInput"
+                    onChange={(e) => setFileUrl(e.target.files[0])}
+                  ></input>
+                </>
+              )}
             </div>
           </div>
           <div className="case">
@@ -71,6 +94,7 @@ const Create = ({ account }) => {
                 type="text"
                 placeholder="이름"
                 className="inputBox"
+                onChange={(e) => setNftName(e.target.value)}
               ></input>
             </div>
           </div>
@@ -85,8 +109,9 @@ const Create = ({ account }) => {
             <div>
               <input
                 id="external_link"
-                placeholder="외부 링크"
+                placeholder="https://yoursite.io/item/123"
                 className="inputBox"
+                onChange={(e) => setDetailLink(e.target.value)}
               ></input>
             </div>
           </div>
@@ -101,12 +126,20 @@ const Create = ({ account }) => {
               id="description"
               placeholder="해당 NFT에 대한 자세한 정보를 작성하는 칸입니다."
               className="inputBox inputDescription"
+              onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
           <div>
             <span>
               <div>
-                <button type="button">생성</button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    mint();
+                  }}
+                >
+                  생성
+                </button>
               </div>
             </span>
           </div>

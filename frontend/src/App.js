@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from "react"; 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Web3 from 'web3';
 import Home from "./components/Home";
 import Explore from "./components/Explore";
 import Create from "./components/Create";
@@ -22,6 +23,18 @@ function App() {
   useEffect(() => {
     setMainaccount(mainaccount);
   }, [mainaccount]);
+  
+  //  web3 설정
+  useEffect(() => {
+    if (typeof window.ethereum !== "undefined") { // window.ethereum이 있다면
+        try {
+            const web = new Web3(window.ethereum);  // 새로운 web3 객체를 만든다
+            setMainweb3(web);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+  }, []);
 
   useEffect(() => {
     if (mainaccount === undefined || mainaccount === null) {
@@ -48,7 +61,7 @@ function App() {
             <Route
               exact={true}
               path="/"
-              element={<Home account={mainaccount} />}
+              element={<Home account={mainaccount} web3={mainweb3} />}
             />
             <Route
               path="/explore"
@@ -60,7 +73,7 @@ function App() {
             />
             <Route
               path="/create"
-              element={<Create account={mainaccount} />}
+              element={<Create account={mainaccount} web3={mainweb3}/>}
             />
             
             <Route

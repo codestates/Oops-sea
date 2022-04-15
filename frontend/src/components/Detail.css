@@ -1,41 +1,77 @@
-/* * {
-    border: 1px solid red;
-  }
-   */
-  .detail {
-    display: flex;
-    justify-items: center;
-    align-items: center;
-  }
-  
-  /* .item--summary {
-     flex-direction: column; 
-  } */
-  
-  .media-container .item-description {
-    width: 25vw;
-  }
-  
-  .media {
-    width: 100%;
-    height: 100%;
-  }
-
-  .card.mb-3.addOption{
-    flex-direction: row;
-    max-width: 800px;
-    margin :50px auto;
+.detail {
+  margin-top: 80px;
+  height: 700px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-.eth-logo{
-    width: 16px;
-    height: 16px;
+.item--summary {
+  width: 500px;
+  height: 500px;
+  background-color: #fff;
+  margin-right: 40px;
 }
 
-.card-img-top.addOption{
-    min-width: 200px;
+.item--main {
+  width: 500px;
+  height: 100%;
+  padding: 15px 20px;
+  background-color: #fff;
+  font-size: 20px;
+  color: rgb(158, 158, 158);
 }
 
-.btn.btn-primary{
-    margin-top:6px;
+article {
+  width: 500px;
+  height: 500px;
+  border: 1px solid rgb(197, 197, 197);
+  border-radius: 20px;
+  margin-bottom: 35px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.item-description {
+  border: 1px;
+  padding: 20px;
+  border: 1px solid rgb(197, 197, 197);
+  border-radius: 20px;
+}
+
+.item-description__created-by {
+  margin-bottom: 20px;
+  color: rgb(158, 158, 158);
+}
+
+.item-description__created-by__address {
+  color: rgb(208, 208, 208);
+}
+
+.item__name,
+/* .item__owned-by, */
+.item__asset-contract,
+.item__price {
+  margin-bottom: 73px;
+  font-size: 30px;
+}
+.item__asset-contract__addr {
+  font-size: 20px;
+  color: rgb(208, 208, 208);
+}
+
+.item__name,
+.item__price {
+  font-size: 50px;
+  font-weight: bold;
+  color: black;
+}
+
+.eth-logo {
+  width: 40px;
+  height: 40px;
 }

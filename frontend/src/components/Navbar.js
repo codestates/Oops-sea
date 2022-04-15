@@ -41,6 +41,7 @@ const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
       method: 'eth_requestAccounts',
     });
     setAccount(accounts[0]);
+    alert('지갑이 연결되었습니다!')
   };
 
   return (
