@@ -40,6 +40,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Navbar
+          mainaccount={mainaccount}
           setMainaccount={setMainaccount}
           setMainweb3={setMainweb3}
           isLogin={isLogin}

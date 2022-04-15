@@ -1,14 +1,26 @@
 import erc721Abi from "../contract/erc721Abi";
 import Web3 from "web3";
-
+//import { Button, Dimmer, Divider, Icon, Label, Loader, Segment } from "semantic-ui-react";
+import "./Account.css";
 import TokenList from "./TokenList";
 import { useState, useEffect } from "react";
+import { Button, Chip, Divider, Icon } from "@mui/material";
+import { Label, Segment } from "@mui/icons-material";
 
 const Account = ({ web3, account }) => {
   const [newErc721addr, setNewErc721Addr] = useState(
     "0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
   ); // my ERC721 CA
   const [erc721list, setErc721list] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    console.log("web3", web3);
+    console.log("account", account);
+    if (web3 && account && erc721list && newErc721addr) {
+      setIsLoading(false);
+    }
+  }, []);
 
   // using web3.js to create contract obj, call contract method and save contract's tokens using setState
   const addNewErc721Token = async () => {
@@ -38,30 +50,57 @@ const Account = ({ web3, account }) => {
     }
   };
 
-  console.log(web3);
-
   return (
     <div>
-      <div className="newErc721">
-        ERC 721 Contract Address(CA):
-        <input
-          type="text"
-          defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
-          onChange={(e) => {
-            setNewErc721Addr(e.target.value); // 입력받을 때마다 newErc721addr 갱신
-          }}
-        ></input>
-        <button onClick={addNewErc721Token}>MyNFT Collections</button>
+      <div style={{ paddingTop: "120px", backgroundColor: "#E5E8EB" }}>
+        <div className="profileContainer">
+          <div className={"topContainer"}></div>
+          <div className={"middleContainer"}>
+            <div className={"profile"}>
+              <Icon name="user outline" size="huge" color="grey" />
+            </div>
+          </div>
+          <div className={"bottomContainer"}>
+            <div className={"useContainer"}>
+              <p className={"nameFont"}>Unnamed</p>
+              {!isLoading && <Chip label={account} />}
+            </div>
+          </div>
+        </div>
       </div>
-
-      <TokenList
-        web3={web3}
-        account={account}
-        erc721list={erc721list}
-        newErc721addr={newErc721addr}
-      />
+      <Divider />
+      <div className={"contentContainer"}>
+        <div className={"tokenContainer"}>
+          <p className={"tokenFont"}>My Collections</p>
+          {!isLoading && (
+            <TokenList
+              web3={web3}
+              account={account}
+              erc721list={erc721list}
+              newErc721addr={newErc721addr}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 };
+//     <div>
+//       <div className="newErc721">
+//       ERC 721 Contract Address(CA):
+//       <input className="textbox"
+//           type="text"
+//           defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
+//           onChange={(e) => {
+//             setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
+//           }}
+//       ></input>
+//       <Link to="/explore"><button className="mynftbnt" onClick={addNewErc721Token}>MyNFT Collections</button></Link>
+//     </div>
+
+//     <TokenList web3={web3} account={account} erc721list={erc721list} newErc721addr={newErc721addr} />
+//   </div>
+//   );
+// };
 
 export default Account;

@@ -76,7 +76,7 @@ const Create = ({ account }) => {
   };
 
   return (
-    <div className="Blockreact">
+    <div className="Blockreact create">
       <main className="FlexColumnreact">
         <header>
           <h1>Create New Item</h1>
@@ -103,7 +103,7 @@ const Create = ({ account }) => {
                 <img className="media" src={imageUrl} />
               ) : (
                 <>
-                  <label className="input-file-icon" for="input-file">
+                  <label className="input-file-icon" htmlFor="input-file">
                     <div className="icon-case">
                       <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
                     </div>
