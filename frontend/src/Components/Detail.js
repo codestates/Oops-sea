@@ -2,9 +2,17 @@ import React from "react";
 import Footer from "./Footer";
 import "./Detail.css";
 
-const Detail = ({ clicked }) => {
-  const handleClick = () => {
-    console.log("buy now!");
+const Detail = ({ web3, clicked }) => {
+  const buyToken = async () => {
+    // console.log("buy now!");
+    // console.log(price);
+    alert("준비중인 기능입니다.");
+    // const buyerAccount = clicked.asset_contract.address;
+    // console.log(buyerAccount);
+    // const buyerBalance = web3.utils.fromWei(await web3.eth.getBalance(buyerAccount), 'ether');
+    // const tokenPriceToWei = web3.utils.toWei(String(tokenPrice), "ether");
+
+    // console.log(buyerBalance);
   };
 
   return (
@@ -40,9 +48,9 @@ const Detail = ({ clicked }) => {
               className="eth-logo"
               src={`https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg`}
             />
-            10 ETH
+            {clicked.traits.value ? clicked.traits.value : 0.1} ETH
           </div>
-          <button onClick={() => handleClick()}>Buy Now</button>
+          <button onClick={() => buyToken()}>Buy Now</button>
         </div>
       </div>
       <Footer />

@@ -25,6 +25,18 @@ function App() {
   }, [mainaccount]);
 
   useEffect(() => {
+    if (typeof window.ethereum !== "undefined") {
+      // window.ethereum이 있다면
+      try {
+        const web = new Web3(window.ethereum); // 새로운 web3 객체를 만든다
+        setMainweb3(web);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     if (mainaccount === undefined || mainaccount === null) {
       setIsLogin(false);
     } else {
@@ -49,7 +61,7 @@ function App() {
           <Route
             exact={true}
             path="/"
-            element={<Home account={mainaccount} />}
+            element={<Home account={mainaccount} web3={mainweb3} />}
           />
           <Route
             path="/explore"
@@ -59,9 +71,12 @@ function App() {
           />
           <Route
             path="/explore/detail/"
-            element={<Detail clicked={clicked} />}
+            element={<Detail web3={mainweb3} clicked={clicked} />}
           />
-          <Route path="/create" element={<Create account={mainaccount} />} />
+          <Route
+            path="/create"
+            element={<Create account={mainaccount} web3={mainweb3} />}
+          />
           <Route
             path="/account"
             element={<Account web3={mainweb3} account={mainaccount} />}
