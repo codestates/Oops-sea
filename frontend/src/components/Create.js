@@ -52,59 +52,73 @@ const Create = ({ web3, account }) => {
           <h1>Create New Item</h1>
         </header>
         <form className="Formreact">
-          <p className="inputTip">
-            <span className="after" />
-            필수 영역
-          </p>
-          <div className="case" shape="square">
-            <label className="after inputTitle">
-              이미지, 비디오, 오디오, 3D 모델
-            </label>
-            <span className="inputTip">
-              지원 가능 파일: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB,
-              GLTF. 최대 크기: 100MB
-            </span>
-            <div className="mediaContainer">
-              {fileUrl ? (
-                <img className="media" src={fileUrl}/>  
-              ) : (
-                <>
-                  <label className="input-file-icon" htmlFor="input-file">
-                    <div className="icon-case">
-                      <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
-                    </div>
-                  </label>
-                  <input
-                    type="file"
-                    id="input-file"
-                    className="imgInput"
-                    onChange={(e) => setFileUrl(e.target.files[0])}
-                  ></input>
-                </>
-              )}
-            </div>
-          </div>
-          <div className="case">
-            <div>
-              <label className="after inputTitle">Name</label>
-            </div>
-            <div>
-              <input
-                id="name"
-                type="text"
-                placeholder="이름"
-                className="inputBox"
-                onChange={(e) => setNftName(e.target.value)}
-              ></input>
-            </div>
-          </div>
-          <div className="case">
-            <div>
-              <label className="inputTitle">External link</label>
+          <ul>
+            <p className="inputTip">
+              <span className="after" />
+              필수 영역
+            </p>
+          <br/>
+
+          <li>
+            <div className="case" shape="square">
+              <label className="after inputTitle">
+                이미지, 비디오, 오디오, 3D 모델
+              </label>
               <span className="inputTip">
-                링크는 NFT 상세 페이지에 노출됩니다. 유저들은 링크를 통해서 해당
-                NFT에 대한 자세한 정보를 얻을 수 있습니다.
+                지원 가능 파일: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB,
+                GLTF. 최대 크기: 100MB
               </span>
+              <br/><br/>
+              
+              <div className="mediaContainer">
+                {fileUrl ? (
+                  <img className="media" src={fileUrl}/>  
+                ) : (
+                  <>
+                    <label className="input-file-icon" htmlFor="input-file">
+                      <div className="icon-case">
+                        <br/><br/><br/>
+                        <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
+                      </div>
+                    </label>
+                    <input
+                      type="file"
+                      id="input-file"
+                      className="imgInput"
+                      onChange={(e) => setFileUrl(e.target.files[0])}
+                    ></input>
+                  </>
+                )}
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div className="case">
+              <div>
+                <label className="after inputTitle">Name</label>
+              </div>
+              <div>
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="이름"
+                  className="inputBox"
+                  onChange={(e) => setNftName(e.target.value)}
+                ></input>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div className="case">
+              <div>
+                <label className="inputTitle">External link</label>
+                <span className="inputTip">
+                  링크는 NFT 상세 페이지에 노출됩니다. 유저들은 링크를 통해서 해당
+                  NFT에 대한 자세한 정보를 얻을 수 있습니다.
+                </span>
+              </div>
             </div>
             <div>
               <input
@@ -114,35 +128,37 @@ const Create = ({ web3, account }) => {
                 onChange={(e) => setDetailLink(e.target.value)}
               ></input>
             </div>
-          </div>
-          <div className="case">
-            <div>
-              <label className="inputTitle">Description</label>
-              <span className="inputTip">
-                Description은 NFT 상세 페이지의 image 아래에 노출됩니다.
-              </span>
-            </div>
-            <textarea
-              id="description"
-              placeholder="해당 NFT에 대한 자세한 정보를 작성하는 칸입니다."
-              className="inputBox inputDescription"
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </div>
-          <div>
-            <span>
+          </li>
+          <br/>
+
+          <li>
+            <div className="case">
               <div>
-                <button
-                  type="button"
-                  onClick={() => {
-                    mint();
-                  }}
-                >
-                  생성
-                </button>
+                <label className="inputTitle">Description</label>
+                <span className="inputTip">
+                  Description은 NFT 상세 페이지의 image 아래에 노출됩니다.
+                </span>
               </div>
-            </span>
-          </div>
+              <textarea
+                id="description"
+                placeholder="해당 NFT에 대한 자세한 정보를 작성하는 칸입니다."
+                className="inputBox inputDescription"
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+          </li>
+          </ul>
+            <div className="mint-btn">
+            <button
+              type="button"
+              onClick={() => {
+                mint();
+              }}
+            >
+              생성
+            </button>
+            </div>
+          <br/><br/><br/><br/>
         </form>
       </main>
     </div>
