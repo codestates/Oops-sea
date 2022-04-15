@@ -30,6 +30,7 @@ function Erc721({ web3, account, erc721list, newErc721addr }) {
         })
         .on("receipt", (receipt) => { // .on으로 받아 보낸내역 setTo() callback
             setTo("");
+            alert('전송되었습니다!');
         });
     }
 
