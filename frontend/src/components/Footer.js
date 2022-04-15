@@ -75,7 +75,7 @@ function Footer() {
                 </div>
                 <div className="trustWalletLogo footerContentLogo">
                     <a href="https://trustwallet.com/ko/">
-                        <svg width="150" height="90" viewBox="0 0 500 250" fill="none" xmlns="http://www.w3.org/2000/svg" width="100" heigth="100">
+                        <svg width="150" height="90" viewBox="0 0 500 250" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <style>
                                 {`.st1{ fill:##3375BB}`}
                                 {`.st1:hover{fill:#ffffff}`}
