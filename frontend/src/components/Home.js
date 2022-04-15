@@ -21,7 +21,7 @@ const Home = () => {
                         </div>
                         <div className="LeftContent LeftContent4">
                             <div>
-                                <i class="fas fa-play-circle"></i>
+                                <i className="fas fa-play-circle"></i>
                             </div>
                             <div className="LeftContent4-2">learn more about OpenSea</div>
                         </div>
@@ -48,7 +48,7 @@ const Home = () => {
                                     <div className="nameCardCenterContent2">AlbaInTheRainbow</div>
                                 </div>
                                 <div className="nameCard">
-                                    <i class="fas fa-info-circle"></i>
+                                    <i className="fas fa-info-circle"></i>
                                 </div>
                             </footer>
                         </div>

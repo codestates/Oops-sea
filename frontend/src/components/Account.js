@@ -1,17 +1,17 @@
-
 import erc721Abi from "../contract/erc721Abi"
 import Web3 from 'web3';
 //import { Button, Dimmer, Divider, Icon, Label, Loader, Segment } from "semantic-ui-react";
 import "./Account.css";
-
 import TokenList from "./TokenList";
 import { useState, useEffect } from "react";
+import {Button, Divider, Icon} from "@mui/material";
+import {Label, Segment} from "@mui/icons-material";
 
 const Account = ({ web3, account }) => {
 
   const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
   const [erc721list, setErc721list] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
 
   // using web3.js to create contract obj, call contract method and save contract's tokens using setState
   const addNewErc721Token = async () => {
@@ -47,42 +47,43 @@ const Account = ({ web3, account }) => {
       return (
         <div>
           <div style={{ paddingTop: "120px", backgroundColor: "#E5E8EB" }}>
-            <div className={styles.profileContainer}>
-              <div className={styles.topContainer}></div>
-              <div className={styles.middleContainer}>
-                <div className={styles.profile}>
+            <div className="profileContainer">
+              <div className={"topContainer"}></div>
+              <div className={"middleContainer"}>
+                <div className={"profile"}>
                   <Icon name="user outline" size="huge" color="grey" />
                 </div>
               </div>
-              <div className={styles.bottomContainer}>
-                <div className={styles.useContainer}>
-                  <p className={styles.nameFont}>Unnamed</p>
-                  {walletType == "eth" ? (
-                    <Button color="grey">
-                      <Icon name="ethereum" /> {account}
-                    </Button>
-                  ) : (
-                    <Label as="a" color="gray" content={account} image={klayImageProps} />
-                  )}
+              <div className={"bottomContainer"}>
+                <div className={"useContainer"}>
+                  <p className={"nameFont"}>Unnamed</p>
+                  <Button color="grey">
+                    <Icon name="ethereum" /> {account}
+                  </Button>
                 </div>
               </div>
             </div>
           </div>
           <Divider />
-          <div className={styles.contentContainer}>
-            <div className={styles.tokenContainer}>
-              <p className={styles.tokenFont}>My Collections</p>
+          <div className={"contentContainer"}>
+            <div className={"tokenContainer"}>
+              <p className={"tokenFont"}>My Collections</p>
               {isLoading && (
                 <Segment basic>
                   <div style={{ height: "140px" }}>
-                    <Dimmer active inverted>
-                      <Loader size="large" inverted content="Loading" />
-                    </Dimmer>
+                    {/*<Dimmer active inverted>*/}
+                    {/*  <Loader size="large" inverted content="Loading" />*/}
+                    {/*</Dimmer>*/}
                   </div>
                 </Segment>
               )}
               {!isLoading && (
-                <TokenList web3={web3} account={account} nftlist={nftlist} newKip17addr={newKip17addr} walletType={walletType} newErc721addr={newErc721addr} mine={true} />
+                <TokenList
+                  web3={web3}
+                  account={account}
+                  erc721list={erc721list}
+                  newErc721addr={newErc721addr}
+                />
               )}
             </div>
           </div>

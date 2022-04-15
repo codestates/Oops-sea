@@ -94,7 +94,7 @@ const Create = ({ account }) => {
               GLTF. 최대 크기: 100MB
             </span>
             <div className="mediaContainer">
-              <input type="file" className="mediaBox" onChange={onChangeImage}></input>
+              <input type="file" className="mediaBox" onChange={(e) => {onChangeImage(e)}}></input>
               <AddPhotoAlternateIcon sx={{fontSize: 100}}/>
               <i value="image" className="icon">
                 image

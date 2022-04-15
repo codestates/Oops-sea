@@ -1,35 +1,48 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import Search from "./Search";
+import Web3 from 'web3';
 import { Link } from "react-router-dom";
 import SailingIcon from "@mui/icons-material/Sailing";
 import IconButton from "@mui/material/IconButton";
 import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-const Navbar = ({ account, setAccount }) => {
-  const getAccount = async () => {
-    try {
-      if (window.ethereum) {
-        const accounts = await window.ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        setAccount(accounts[0]);
-      } else {
-        alert("Install Metamask");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
+  console.log(isLogin);
+
+  const [web3, setWeb3] = useState();
+  const [account, setAccount] = useState('');
 
   useEffect(() => {
-    getAccount();
+    if (typeof window.ethereum !== 'undefined') {
+      // window.ethereum이 있다면
+      try {
+        const web = new Web3(window.ethereum); // 새로운 web3 객체를 만든다
+
+        setWeb3(web);
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }, []);
 
   useEffect(() => {
+    setMainaccount(account);
     console.log(account);
   }, [account]);
+
+  useEffect(() => {
+    setMainweb3(web3);
+  }, [web3]);
+
+  const connectWallet = async () => {
+    const accounts = await window.ethereum.request({
+      method: 'eth_requestAccounts',
+    });
+    setAccount(accounts[0]);
+  };
+
 
   return (
     <div className="navbar FlexRowreact">
@@ -50,6 +63,7 @@ const Navbar = ({ account, setAccount }) => {
         <Link to="/create" style={{ textDecoration: "none", color: "inherit" }}>
           <li>Create</li>
         </Link>
+
         <Link
           to="/account"
           style={{ textDecoration: "none", color: "inherit" }}
@@ -57,26 +71,19 @@ const Navbar = ({ account, setAccount }) => {
           <li>Account</li>
         </Link>
         <li>
-          {/* <button
-            type="button"
-            calssName="metaConnect"
+          <AccountBalanceWalletIcon
             style={{ cursor: "pointer" }}
-            onClick={() => {
-              getAccount();
-              console.log(account);
-            }}
-          > */}
-          <ToggleButton
-            onClick={() => {
-              getAccount();
-              console.log(account);
-            }}
-          >
-            <AccountBalanceWalletIcon />
-          </ToggleButton>
-          {/* </button> */}
+            onClick={() => {connectWallet();}}/>
         </li>
+
       </ul>
+
+      {/* 지갑연결 상태 */}
+      <div className={isLogin ? "login-succeed" : "login-needed"}>
+        {isLogin ? 'connected!'
+          : 'disconnected'}
+      </div>
+
     </div>
   );
 };

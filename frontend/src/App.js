@@ -1,18 +1,18 @@
-import "./App.css";
+import './App.css';
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from "./components/Home";
 import Explore from "./components/Explore";
 import Create from "./components/Create";
 import Account from "./components/Account";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Web3 from "web3";
+import Detail from './components/Detail';
+import Footer from './components/Footer';
 
 function App() {
 	// const [web3, setWeb3] = useState();
 	// const [account, setAccount] = useState('');
-	const [mainaccount, setMainaccount] = useState("");
+	const [mainaccount, setMainaccount] = useState('');
 	const [mainweb3, setMainweb3] = useState();
 	const [clicked, setClicked] = useState();
 	const [isLogin, setIsLogin] = useState(false);
@@ -35,14 +35,15 @@ function App() {
 		setClicked(e);
 	};
 
+
 	return (
+
 		<BrowserRouter>
 			<div className="App">
-				<Navbar
-					setMainaccount={setMainaccount}
-					setMainweb3={setMainweb3}
-					isLogin={isLogin}
-				/>
+
+				<Navbar setMainaccount={setMainaccount}
+								setMainweb3={setMainweb3}
+								isLogin={isLogin} />
 				<Routes>
 					<Route
 						exact={true}
@@ -51,19 +52,29 @@ function App() {
 					/>
 					<Route
 						path="/explore"
-						element={
-							<Explore account={mainaccount} handleClicked={handleClicked} />
-						}
+						element={<Explore account={mainaccount} handleClicked={handleClicked} />}
 					/>
-					<Route path="/create" element={<Create account={mainaccount} />} />
+					<Route
+						path="/explore/detail"
+						element={<Detail clicked={clicked} />}
+					/>
+					<Route
+						path="/create"
+						element={<Create account={mainaccount} />}
+					/>
+
 					<Route
 						path="/account"
-						element={<Account web3={mainweb3} account={mainaccount} />}
+						element={<Account web3={mainweb3} account={mainaccount}/>}
 					/>
 				</Routes>
-				<Footer />
+				<Footer/>
+
 			</div>
+
 		</BrowserRouter>
+
+
 	);
 }
 
