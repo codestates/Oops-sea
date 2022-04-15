@@ -2,9 +2,20 @@
   background-color: #fff;
   height: 80px;
   display: flex;
-  justify-items: center;
+  justify-content: space-around;
   align-items: center;
   box-shadow: 0px 0.5px 20px rgb(188, 188, 188);
+}
+
+.navbar-title {
+  font-size: 25px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.to-home {
+  display: flex;
+  align-items: center;
 }
 
 .link {
@@ -13,9 +24,15 @@
   list-style: none;
   font-size: 26px;
   font-weight: bold;
-  padding-right: 100px;
+  align-items: center;
 }
 
 .link li {
-  margin-left: 50px;
+  padding: 0px 15px;
+}
+
+.wallet-connected {
+  width: 30px;
+  font-size: 18px;
+  margin-left: 15px;
 }

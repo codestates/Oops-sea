@@ -1,3 +1,7 @@
+.create {
+  margin-left: 50px;
+}
+
 .after::after {
   content: " * ";
   color: rgb(235, 67, 67);
@@ -43,7 +47,7 @@ textarea::placeholder {
 }
 
 .mediaContainer {
-  height: 257px;
+  height: 350px;
   width: 350px;
   border: 3px dotted rgb(135, 135, 135);
   border-radius: 20px;
@@ -57,13 +61,13 @@ textarea::placeholder {
 }
 
 .imgInput {
-  height: 257px;
+  height: 350px;
   width: 350px;
   display: none;
 }
 
 .icon-case {
-  height: 257px;
+  height: 350px;
   width: 350px;
   cursor: pointer;
 }
