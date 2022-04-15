@@ -6,8 +6,8 @@ import Explore from "./components/Explore";
 import Create from "./components/Create";
 import Account from "./components/Account";
 import Navbar from "./components/Navbar";
-import Web3 from 'web3';
 import Detail from './components/Detail';
+import Footer from './components/Footer';
 
 function App() {
   // const [web3, setWeb3] = useState();
@@ -67,8 +67,8 @@ function App() {
               path="/account"
               element={<Account web3={mainweb3} account={mainaccount}/>}
             />
-            
           </Routes>
+          <Footer/>
 
         </div>
 
