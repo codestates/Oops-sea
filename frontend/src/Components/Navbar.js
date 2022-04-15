@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-const Navbar = ({ mainaccount, setMainaccount, setMainweb3, isLogin }) => {
+const Navbar = ({ mainaccount, setMainaccount, setMainweb3 }) => {
   const [web3, setWeb3] = useState();
   const [account, setAccount] = useState("");
 
@@ -40,6 +40,7 @@ const Navbar = ({ mainaccount, setMainaccount, setMainweb3, isLogin }) => {
       method: "eth_requestAccounts",
     });
     setAccount(accounts[0]);
+    alert("지갑이 연결되었습니다!");
   };
 
   return (
