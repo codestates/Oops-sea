@@ -1,6 +1,7 @@
 
 import erc721Abi from "../contract/erc721Abi"
 import Web3 from 'web3';
+import { Button, Dimmer, Divider, Icon, Label, Loader, Segment } from "semantic-ui-react";
 import "./Account.css";
 
 import TokenList from "./TokenList";
@@ -43,24 +44,67 @@ const Account = ({ web3, account }) => {
         }
     }
   }
-    return (
+      return (
+        <div>
+          <div style={{ paddingTop: "120px", backgroundColor: "#E5E8EB" }}>
+            <div className={styles.profileContainer}>
+              <div className={styles.topContainer}></div>
+              <div className={styles.middleContainer}>
+                <div className={styles.profile}>
+                  <Icon name="user outline" size="huge" color="grey" />
+                </div>
+              </div>
+              <div className={styles.bottomContainer}>
+                <div className={styles.useContainer}>
+                  <p className={styles.nameFont}>Unnamed</p>
+                  {walletType == "eth" ? (
+                    <Button color="grey">
+                      <Icon name="ethereum" /> {account}
+                    </Button>
+                  ) : (
+                    <Label as="a" color="gray" content={account} image={klayImageProps} />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+          <Divider />
+          <div className={styles.contentContainer}>
+            <div className={styles.tokenContainer}>
+              <p className={styles.tokenFont}>My Collections</p>
+              {isLoading && (
+                <Segment basic>
+                  <div style={{ height: "140px" }}>
+                    <Dimmer active inverted>
+                      <Loader size="large" inverted content="Loading" />
+                    </Dimmer>
+                  </div>
+                </Segment>
+              )}
+              {!isLoading && (
+                <TokenList web3={web3} account={account} nftlist={nftlist} newKip17addr={newKip17addr} walletType={walletType} newErc721addr={newErc721addr} mine={true} />
+              )}
+            </div>
+          </div>
+        </div>
+      );
+              }
+  //     <div>
+  //       <div className="newErc721">
+  //       ERC 721 Contract Address(CA): 
+  //       <input className="textbox"
+  //           type="text"
+  //           defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
+  //           onChange={(e) => {
+  //             setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
+  //           }}
+  //       ></input> 
+  //       <Link to="/explore"><button className="mynftbnt" onClick={addNewErc721Token}>MyNFT Collections</button></Link>    
+  //     </div>
 
-      <div>
-        <div className="newErc721">
-        ERC 721 Contract Address(CA): 
-        <input className="textbox"
-            type="text"
-            defaultValue="0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
-            onChange={(e) => {
-              setNewErc721Addr(e.target.value);  // 입력받을 때마다 newErc721addr 갱신
-            }}
-        ></input> 
-        <button className="mynftbnt" onClick={addNewErc721Token}>MyNFT Collections</button>     
-      </div>
-
-      <TokenList web3={web3} account={account} erc721list={erc721list} newErc721addr={newErc721addr} />
-    </div>
-    );
-  };
+  //     <TokenList web3={web3} account={account} erc721list={erc721list} newErc721addr={newErc721addr} />
+  //   </div>
+  //   );
+  // };
   
   export default Account;
