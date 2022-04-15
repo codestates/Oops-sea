@@ -1,7 +1,7 @@
 
 import erc721Abi from "../contract/erc721Abi"
 import Web3 from 'web3';
-import { Button, Dimmer, Divider, Icon, Label, Loader, Segment } from "semantic-ui-react";
+//import { Button, Dimmer, Divider, Icon, Label, Loader, Segment } from "semantic-ui-react";
 import "./Account.css";
 
 import TokenList from "./TokenList";
