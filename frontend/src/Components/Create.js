@@ -110,42 +110,38 @@ const Create = ({ web3, account }) => {
                 ></input>
               </div>
             </div>
-            <li>
-              <div className="case">
-                <div>
-                  <label className="inputTitle">External link</label>
-                  <span className="inputTip">
-                    링크는 NFT 상세 페이지에 노출됩니다. 유저들은 링크를 통해서
-                    해당 NFT에 대한 자세한 정보를 얻을 수 있습니다.
-                  </span>
-                </div>
-                <div>
-                  <input
-                    id="external_link"
-                    placeholder="https://yoursite.io/item/123"
-                    className="inputBox"
-                    onChange={(e) => setDetailLink(e.target.value)}
-                  ></input>
-                </div>
+
+            <div className="case">
+              <div>
+                <label className="inputTitle">External link</label>
+                <span className="inputTip">
+                  링크는 NFT 상세 페이지에 노출됩니다. 유저들은 링크를 통해서
+                  해당 NFT에 대한 자세한 정보를 얻을 수 있습니다.
+                </span>
               </div>
-            </li>
-            <br />
-            <li>
-              <div className="case">
-                <div>
-                  <label className="inputTitle">Description</label>
-                  <span className="inputTip">
-                    Description은 NFT 상세 페이지의 image 아래에 노출됩니다.
-                  </span>
-                </div>
-                <textarea
-                  id="description"
-                  placeholder="해당 NFT에 대한 자세한 정보를 작성하는 칸입니다."
-                  className="inputBox inputDescription"
-                  onChange={(e) => setDescription(e.target.value)}
-                ></textarea>
+              <div>
+                <input
+                  id="external_link"
+                  placeholder="https://yoursite.io/item/123"
+                  className="inputBox"
+                  onChange={(e) => setDetailLink(e.target.value)}
+                ></input>
               </div>
-            </li>
+            </div>
+            <div className="case">
+              <div>
+                <label className="inputTitle">Description</label>
+                <span className="inputTip">
+                  Description은 NFT 상세 페이지의 image 아래에 노출됩니다.
+                </span>
+              </div>
+              <textarea
+                id="description"
+                placeholder="해당 NFT에 대한 자세한 정보를 작성하는 칸입니다."
+                className="inputBox inputDescription"
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
           </ul>
           <div>
             <span>

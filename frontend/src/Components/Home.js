@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import Footer from "./Footer";
 
 const Home = () => {
-  const HeadText = "Discover, collect, and sell extraordinary NFTs";
-  const DescText = "OpenSea is the world's first and largest NFT marketplace";
+  // const HeadText = "Discover, collect, and sell extraordinary NFTs";
+  // const DescText = "OpenSea is the world's first and largest NFT marketplace";
 
   return (
     <>
@@ -47,6 +47,7 @@ const Home = () => {
                     <img
                       className="image"
                       src="https://lh3.googleusercontent.com/-mrglknzUSrn6SZhH0hZ3c14gyQgTSvcx1kAKimiNhChrlrsJHfd9KGbUmVlW4Ji5lWFVOUkF3-KxR5wDDe-7NB-JIWgXfSVg97o=s0"
+                      alt="..."
                     />
                   </article>
                   <footer className="content2">
@@ -54,6 +55,7 @@ const Home = () => {
                       <img
                         className="boy"
                         src="https://lh3.googleusercontent.com/4a_5U42qB3mXxtGsp5Hmx0uXHiuciAAgNd-Yrz9vaAF6ZsiWdBrKJ5KF6q0nKyRfksgz8x_wOzGCBQAZKpyNb-fNgkeNfmlhqtO9r_I=s0"
+                        alt="..."
                       />
                     </div>
                     <div className="nameCardCenter">

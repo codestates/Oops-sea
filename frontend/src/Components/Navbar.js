@@ -5,7 +5,6 @@ import Web3 from "web3";
 import { Link } from "react-router-dom";
 import SailingIcon from "@mui/icons-material/Sailing";
 import IconButton from "@mui/material/IconButton";
-import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
 const Navbar = ({ mainaccount, setMainaccount, setMainweb3 }) => {

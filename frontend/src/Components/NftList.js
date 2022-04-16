@@ -40,12 +40,42 @@ const NftList = ({ data, handleClick }) => {
                     <img
                       className="card-creator-profile"
                       src={item.creator.profile_img_url}
+                      alt="profile"
                     />
                   </div>
                 </div>
               </>
             ) : (
-              <div className="no-img">No Image</div>
+              <>
+                <div className="card-img">
+                  <button
+                    type="button"
+                    className="btn card-img"
+                    onClick={() => {
+                      handleOnClick(item);
+                    }}
+                  >
+                    <Link to={"/explore/detail"}>
+                      <img
+                        src="https://www.vuescript.com/wp-content/uploads/2018/11/Show-Loader-During-Image-Loading-vue-load-image.png"
+                        className="card-img"
+                        alt="..."
+                      ></img>
+                    </Link>
+                  </button>
+                </div>
+                <div className="card-body addOption">
+                  <h4 className="card-title addOption">{item.name}</h4>
+                  <div className="card-creator">
+                    Created by
+                    <img
+                      className="card-creator-profile"
+                      src={item.creator.profile_img_url}
+                      alt="profile"
+                    />
+                  </div>
+                </div>
+              </>
             )}
           </div>
         ))}
