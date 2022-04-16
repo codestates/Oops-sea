@@ -1,4 +1,9 @@
+.nftlist {
+  margin: 20px 100px;
+}
+
 .explore-header {
+  width: 100%;
   padding: 60px 0px 40px 0px;
   text-align: center;
   font-weight: bold;
@@ -12,7 +17,6 @@
   justify-content: space-around;
   align-items: center;
   margin-top: 40px;
-  margin-left: 50px;
 }
 
 .card.addOption {
