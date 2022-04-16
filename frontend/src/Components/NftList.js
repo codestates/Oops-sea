@@ -9,7 +9,7 @@ const NftList = ({ data, handleClick }) => {
 
   console.log(data);
   return (
-    <>
+    <div className="Blockreact FlexColumnreact">
       <div className="card-group explore-header">Explore Collections</div>
       <div className="card-group addOption Blockreact">
         {data.map((item) => (
@@ -80,7 +80,7 @@ const NftList = ({ data, handleClick }) => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 export default NftList;
