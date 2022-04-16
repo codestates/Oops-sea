@@ -8,17 +8,12 @@ import Create from "./components/Create";
 import Account from "./components/Account";
 import Navbar from "./components/Navbar";
 import Detail from './components/Detail';
-import Footer from './components/Footer';
 
 function App() {
-  // const [web3, setWeb3] = useState();
-  // const [account, setAccount] = useState('');
   const [mainaccount, setMainaccount] = useState('');
   const [mainweb3, setMainweb3] = useState();
   const [clicked, setClicked] = useState();
   const [isLogin, setIsLogin] = useState(false);
-  // const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
-  // const [erc721list, setErc721list] = useState([]);
 
   useEffect(() => {
     setMainaccount(mainaccount);
@@ -81,7 +76,6 @@ function App() {
               element={<Account web3={mainweb3} account={mainaccount}/>}
             />
           </Routes>
-          <Footer/>
 
         </div>
 

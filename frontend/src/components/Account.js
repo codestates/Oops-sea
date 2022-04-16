@@ -1,19 +1,19 @@
 import erc721AbiCreate from "../contract/erc721AbiCreate";
 // import erc721Abi from "../contract/erc721Abi"
 import TokenList from "./TokenList";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import './Account.css';
 
 const Account = ({ web3, account }) => {
   
   // const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
-  const [newErc721addr, setNewErc721Addr] = useState('0x2Fd99173daA98f87E4F36aA84C256011738f8C2b'); // my ERC721 CA
+  const [newErc721addr, setNewErc721Addr] = useState('0x2Fd99173daA98f87E4F36aA84C256011738f8C2b'); // my new ERC721Create CA 
   const [erc721list, setErc721list] = useState([]);
-
 
   // using web3.js to create contract obj, call contract method and save contract's tokens using setState
   const addNewErc721Token = async () => {
 
+    console.log(account, web3);
     if(account==='' || web3===undefined) return alert('지갑을 연결하세요.')
 
     const tokenContract = await new web3.eth.Contract( // create contract obj using abi, address
@@ -21,7 +21,6 @@ const Account = ({ web3, account }) => {
       erc721AbiCreate,
       newErc721addr
     );
-    // alert('erc721');
 
     const name = await tokenContract.methods.name().call();
     const symbol = await tokenContract.methods.symbol().call();

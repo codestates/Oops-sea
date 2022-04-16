@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./Create.css";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import { create } from 'ipfs-http-client';
@@ -16,7 +16,7 @@ const Create = ({ web3, account }) => {
   const mint = async () => {
 
     if(account==='' || web3===undefined) return alert('지갑을 연결하세요.')
-    console.log(web3, account,contractAddr);
+    console.log(web3, account, contractAddr);
 
     const client = create("https://ipfs.infura.io:5001/api/v0");
     let cid = await client.add(fileUrl);
@@ -40,18 +40,16 @@ const Create = ({ web3, account }) => {
 
     console.log(name,symbol,totalSupply)
     alert(`새로운 NFT ${nftName}을 발급하였습니다! `)
-
-    
-
   };
 
   return (
-    <div className="Blockreact">
+    <div className="Blockreact create">
       <main className="FlexColumnreact">
         <header>
           <h1>Create New Item</h1>
         </header>
-        <form className="Formreact">
+        <form className="Formreact"
+              encType="multipart/form-data">
           <ul>
             <p className="inputTip">
               <span className="after" />
@@ -68,7 +66,8 @@ const Create = ({ web3, account }) => {
                 지원 가능 파일: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB,
                 GLTF. 최대 크기: 100MB
               </span>
-              <br/><br/>
+              <br/>
+              <br/>
               
               <div className="mediaContainer">
                 {fileUrl ? (
@@ -77,7 +76,6 @@ const Create = ({ web3, account }) => {
                   <>
                     <label className="input-file-icon" htmlFor="input-file">
                       <div className="icon-case">
-                        <br/><br/><br/>
                         <AddPhotoAlternateIcon sx={{ fontSize: 100 }} />
                       </div>
                     </label>
@@ -148,7 +146,7 @@ const Create = ({ web3, account }) => {
             </div>
           </li>
           </ul>
-            <div className="mint-btn">
+          <div className="mint-btn">
             <button
               type="button"
               onClick={() => {
@@ -157,8 +155,11 @@ const Create = ({ web3, account }) => {
             >
               생성
             </button>
-            </div>
-          <br/><br/><br/><br/>
+          </div>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
         </form>
       </main>
     </div>

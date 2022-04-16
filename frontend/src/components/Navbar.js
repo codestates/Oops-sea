@@ -9,7 +9,6 @@ import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
 const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
-  console.log(isLogin);
   
   const [web3, setWeb3] = useState();
   const [account, setAccount] = useState('');

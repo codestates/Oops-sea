@@ -1,25 +1,11 @@
-import React, { useState } from "react";
-// import Footer from "./Footer";
+import React from "react";
+import Footer from "./Footer";
 import "./Detail.css";
 
-const Detail = ({ web3, clicked }) => {
-
-  // const [buyerBalance, setBuyerBalance] = useState(10);
-  // const [clickedPrice, setClickedPrice] = useState(0);
-  // let price = web3.utils.fromWei(web3.eth.getBalance(clicked.asset_contract.address), 'ether');
-  
+const Detail = ({ clicked }) => {
 
   const buyToken = async () => {
-    // console.log("buy now!");
-    // console.log(price);
     alert('준비중인 기능입니다.')
-    // const buyerAccount = clicked.asset_contract.address;
-    // console.log(buyerAccount);
-    // const buyerBalance = web3.utils.fromWei(await web3.eth.getBalance(buyerAccount), 'ether');
-    // const tokenPriceToWei = web3.utils.toWei(String(tokenPrice), "ether");
-
-    // console.log(buyerBalance);
-
   };
 
   return (
@@ -62,7 +48,7 @@ const Detail = ({ web3, clicked }) => {
           </button>
         </div>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };
