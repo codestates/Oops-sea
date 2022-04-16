@@ -1,35 +1,73 @@
+.nftlist {
+  margin: 20px 100px;
+}
+
+.explore-header {
+  width: 100%;
+  padding: 60px 0px 40px 0px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  border-bottom: 1px solid rgb(219, 219, 219);
+}
+
 .card-group.addOption {
-    flex-wrap: wrap;
-    width: 1250px;
-    align-items: center;
-  }
-  .card.addOption {
-    min-width: 240px;
-    padding: 10px;
-  }
-  
-  .card-group > .card + .card {
-    border-left: auto;
-  }
-  .card-img-top {
-    width: 250px;
-    height: 250px;
-  }
-  
-  .card-text.addOption {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    text-align: center;
-    right: 0;
-  }
-  
-  .card-title.addOption {
-    padding-bottom: 20px;
-  }
-  
-  .card-body.addOption {
-    height: 150px;
-    position: relative;
-  }
-  
+  flex-wrap: wrap;
+  width: 1250px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.card.addOption {
+  min-width: 240px;
+  padding: 10px;
+  width: 250px;
+  text-align: center;
+}
+
+.card-img {
+  width: 250px;
+  height: 250px;
+}
+
+.card-text.addOption {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  text-align: center;
+  right: 0;
+}
+
+.card-title.addOption {
+  padding-bottom: 20px;
+}
+
+.card-body {
+  padding: 5px;
+  margin-top: 20px;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 20px;
+}
+
+.card-body.addOption {
+  height: 80px;
+  position: relative;
+}
+
+.card-creator {
+  font-size: 15px;
+}
+
+.card-creator-profile {
+  margin-left: 5px;
+  width: 13px;
+  height: 13px;
+}
+
+.btn {
+  background-color: #fff;
+  border: #fff;
+  width: 250px;
+  height: 250px;
+}

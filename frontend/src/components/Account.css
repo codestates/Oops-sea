@@ -1,21 +1,21 @@
 .profileContainer {
-    position:inherit;
+    position: inherit;
     width: 100%;
     height: 400px;
-    background-color: #E5E8EB;
-}
-.topContainer {
+    background-color: #e5e8eb;
+  }
+  .topContainer {
     height: 45%;
-    background-color: #E5E8EB;
-}
-.middleContainer{
+    background-color: #e5e8eb;
+  }
+  .middleContainer {
     display: none;
     height: 0.01%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.bottomContainer{
+  }
+  .bottomContainer {
     height: 60%;
     background-color: #fff;
     box-sizing: border-box;
@@ -23,8 +23,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-.profile {
+  }
+  .profile {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -33,36 +33,35 @@
     height: 120px;
     border-radius: 50%;
     border: 0.5px solid #2c2c2c;
-    
-}
-.useContainer{
+  }
+  .useContainer {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin-top: 60px;
-}
-.nameFont{
+  }
+  .nameFont {
     font-size: 24px;
     font-weight: 500;
-}
-.contentContainer {
+  }
+  .contentContainer {
     background-color: #fff;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-.tokenContainer{
+  }
+  .tokenContainer {
     margin-top: 20px;
     min-height: 300px;
     width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-}
-
-.tokenFont{
+  }
+  
+  .tokenFont {
     font-size: 28px;
     font-weight: 500;
-}
+  }
