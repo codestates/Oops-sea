@@ -1,7 +1,8 @@
 import erc721AbiCreate from "../contract/erc721AbiCreate";
-import "./Account.css";
+// import erc721Abi from "../contract/erc721Abi"
 import TokenList from "./TokenList";
 import { useState, useEffect } from "react";
+import "./Account.css";
 
 const Account = ({ web3, account }) => {
   // const [newErc721addr, setNewErc721Addr] = useState('0x8dc27935bA6725025D4b96F49445392E7AE45c5B'); // my ERC721 CA
