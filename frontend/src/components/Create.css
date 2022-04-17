@@ -1,0 +1,84 @@
+.create {
+  margin-left: 50px;
+}
+
+.after::after {
+  content: " * ";
+  color: rgb(235, 67, 67);
+}
+
+.case {
+  margin-bottom: 24px;
+}
+
+header {
+  margin: 80px 0px 20px 0px;
+}
+
+.inputBox {
+  width: 100%;
+  height: 30px;
+  border: 1px solid rgb(135, 135, 135);
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.inputDescription {
+  height: 60px;
+}
+
+.inputTitle {
+  display: flex;
+  font-weight: bold;
+  font-size: large;
+}
+
+.inputTip {
+  font-size: small;
+  color: rgb(135, 135, 135);
+}
+
+input::placeholder {
+  color: rgb(178, 178, 178);
+}
+
+textarea::placeholder {
+  color: rgb(178, 178, 178);
+}
+
+.mediaContainer {
+  height: 350px;
+  width: 350px;
+  border: 3px dotted rgb(135, 135, 135);
+  border-radius: 20px;
+  text-align: center;
+  /* role: "button"; */
+}
+
+.media {
+  width: 100%;
+  height: 100%;
+}
+
+.imgInput {
+  height: 350px;
+  width: 350px;
+  display: none;
+}
+
+.icon-case {
+  padding-top: 110px;
+  height: 350px;
+  width: 350px;
+  cursor: pointer;
+}
+
+button {
+  height: 40px;
+  width: 100px;
+  background-color: rgb(71, 138, 215);
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 12px;
+}
