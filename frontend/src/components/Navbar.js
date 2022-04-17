@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import Search from "./Search";
-import Web3 from 'web3';
+import Web3 from "web3";
 import { Link } from "react-router-dom";
 import SailingIcon from "@mui/icons-material/Sailing";
 import IconButton from "@mui/material/IconButton";
-import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
-  
+const Navbar = ({ mainaccount, setMainaccount, setMainweb3 }) => {
   const [web3, setWeb3] = useState();
-  const [account, setAccount] = useState('');
+  const [account, setAccount] = useState("");
 
   useEffect(() => {
-    if (typeof window.ethereum !== 'undefined') {
+    if (typeof window.ethereum !== "undefined") {
       // window.ethereum이 있다면
       try {
         const web = new Web3(window.ethereum); // 새로운 web3 객체를 만든다
 
+        console.log("web:", web);
         setWeb3(web);
       } catch (err) {
         console.log(err);
       }
-    } 
+    }
   }, []);
 
   useEffect(() => {
@@ -37,19 +36,23 @@ const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
 
   const connectWallet = async () => {
     const accounts = await window.ethereum.request({
-      method: 'eth_requestAccounts',
+      method: "eth_requestAccounts",
     });
     setAccount(accounts[0]);
-    alert('지갑이 연결되었습니다!')
+    alert("지갑이 연결되었습니다!");
   };
 
   return (
     <div className="navbar FlexRowreact">
-      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+      <Link
+        to="/"
+        style={{ textDecoration: "none", color: "inherit" }}
+        className="to-home"
+      >
         <IconButton>
-          <SailingIcon />
+          <SailingIcon sx={{ fontSize: 50 }} />
         </IconButton>
-        OpenSea
+        <span className="navbar-title">OopsSea</span>
       </Link>
       <Search searchValue={""} />
       <ul className="link">
@@ -67,22 +70,23 @@ const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
           to="/account"
           style={{ textDecoration: "none", color: "inherit" }}
         >
-        <li>Account</li>
+          <li>Account</li>
         </Link>
         <li>
-          <AccountBalanceWalletIcon 
-            style={{ cursor: "pointer" }}
-            onClick={() => {connectWallet();}}/>
+          {!mainaccount ? (
+            <AccountBalanceWalletIcon
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                connectWallet();
+              }}
+            />
+          ) : (
+            <div className="wallet-connected Blockreact FlexColumnreact">
+              <div>Wallet</div> <div>Connected</div>
+            </div>
+          )}
         </li>
-                
       </ul>
-
-      {/* 지갑연결 상태 */}
-      <div className={isLogin ? "login-succeed" : "login-needed"}>
-        {isLogin ? 'connected!' 
-                : 'disconnected'}
-      </div>
-
     </div>
   );
 };
