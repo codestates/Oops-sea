@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-const Navbar = ({ mainaccount, setMainaccount, setMainweb3, isLogin }) => {
+const Navbar = ({ mainaccount, setMainaccount, setMainweb3}) => {
   
   const [web3, setWeb3] = useState();
   const [account, setAccount] = useState('');

@@ -9,16 +9,25 @@ const Create = ({ web3, account }) => {
   const [nftName, setNftName] = useState("");
   const [detailLink, setDetailLink] = useState("");
   const [description, setDescription] = useState("");
-  const ethereumTypeList = ["ERC-721"];
-  // const contractAddr = "0x8dc27935bA6725025D4b96F49445392E7AE45c5B"
   const contractAddr = "0x2Fd99173daA98f87E4F36aA84C256011738f8C2b";
+  const client = create("https://ipfs.infura.io:5001/api/v0");
 
+  const onChangeImage = async (e) => {
+    const file = e.target.files[0];
+    try {
+      const added = await client.add(file);
+      const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+      setFileUrl(url);
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+    }
+  };
+  
   const mint = async () => {
 
     if(account==='' || web3===undefined) return alert('지갑을 연결하세요.')
     console.log(web3, account, contractAddr);
 
-    const client = create("https://ipfs.infura.io:5001/api/v0");
     let cid = await client.add(fileUrl);
     let token_uri = `https://ipfs.infura.io/ipfs/${cid.path}`;
 
@@ -71,7 +80,7 @@ const Create = ({ web3, account }) => {
               
               <div className="mediaContainer">
                 {fileUrl ? (
-                  <img className="media" src={fileUrl}/>  
+                  <img className="media" src={fileUrl} />
                 ) : (
                   <>
                     <label className="input-file-icon" htmlFor="input-file">
@@ -83,8 +92,8 @@ const Create = ({ web3, account }) => {
                       type="file"
                       id="input-file"
                       className="imgInput"
-                      onChange={(e) => setFileUrl(e.target.files[0])}
-                    ></input>
+                      onChange={(e) => onChangeImage(e)}
+                    />
                   </>
                 )}
               </div>
