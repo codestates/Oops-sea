@@ -7,7 +7,7 @@ const NftList = ({ data, handleClick }) => {
     handleClick(e);
   };
 
-  console.log(data);
+  // console.log(data);
   return (
     <div className="Blockreact FlexColumnreact">
       <div className="card-group explore-header">Explore Collections</div>

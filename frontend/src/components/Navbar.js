@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import ToggleButton from "@mui/material/ToggleButton";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
-const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
+const Navbar = ({ mainaccount, setMainaccount, setMainweb3, isLogin }) => {
   
   const [web3, setWeb3] = useState();
   const [account, setAccount] = useState('');
@@ -23,16 +23,17 @@ const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
       } catch (err) {
         console.log(err);
       }
-    } 
+    }
   }, []);
 
   useEffect(() => {
     setMainaccount(account);
-    console.log(account);
+    console.log(`account: ${account}`);
   }, [account]);
 
   useEffect(() => {
     setMainweb3(web3);
+    console.log(`web3: ${web3}`);
   }, [web3]);
 
   const connectWallet = async () => {
@@ -45,11 +46,13 @@ const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
 
   return (
     <div className="navbar FlexRowreact">
-      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+      <Link to="/"         
+            className="to-home"
+            style={{ textDecoration: "none", color: "inherit" }}>
         <IconButton>
           <SailingIcon />
         </IconButton>
-        OpenSea
+        <span className="navbar-title">OopsSea</span>
       </Link>
       <Search searchValue={""} />
       <ul className="link">
@@ -67,22 +70,23 @@ const Navbar = ({ setMainaccount, setMainweb3, isLogin }) => {
           to="/account"
           style={{ textDecoration: "none", color: "inherit" }}
         >
-        <li>Account</li>
+          <li>Account</li>
         </Link>
         <li>
-          <AccountBalanceWalletIcon 
-            style={{ cursor: "pointer" }}
-            onClick={() => {connectWallet();}}/>
+          {!mainaccount ? (
+            <AccountBalanceWalletIcon
+              style={{ cursor: "pointer" }}
+              onClick={() => {
+                connectWallet();
+              }}
+            />
+          ) : (
+            <div className="wallet-connected Blockreact FlexColumnreact">
+              <div>Wallet</div> <div>Connected</div>
+            </div>
+          )}
         </li>
-                
       </ul>
-
-      {/* 지갑연결 상태 */}
-      <div className={isLogin ? "login-succeed" : "login-needed"}>
-        {isLogin ? 'connected!' 
-                : 'disconnected'}
-      </div>
-
     </div>
   );
 };

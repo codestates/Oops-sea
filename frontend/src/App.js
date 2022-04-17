@@ -51,6 +51,7 @@ function App() {
 
           <Navbar setMainaccount={setMainaccount}
                   setMainweb3={setMainweb3}
+                  mainaccount={mainaccount}
                   isLogin={isLogin} />
           <Routes>
             <Route
