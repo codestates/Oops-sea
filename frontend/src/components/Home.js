@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Home.css";
 import { Link } from 'react-router-dom';
-
+import Footer from './Footer';
 const Home = () => {
 
 	const HeadText = "Discover, collect, and sell extraordinary NFTs"
@@ -56,7 +56,9 @@ const Home = () => {
                 </div>
             </div>
         </div>
+        <Footer />
 		</div>
+        
 	);
 
 }
